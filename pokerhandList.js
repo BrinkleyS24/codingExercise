@@ -16,14 +16,31 @@ function fourOfAKind(cards) {
     let handValue = [];
 
     // sort card values
-    cardValues.forEach((elem, i) => {
+    cardValues.forEach((ele, i) => {
         handValue.push(cards.filter(value => value == cardValues[i]))
     })
 
     // counting values
-    handValue.forEach((elem, i) => {
+    handValue.forEach((ele, i) => {
         if(handValue[i].length == 4) {
             return true
         }
     })
 }
+
+function flush(cards) {
+    let handValue = [];
+    var suits = ['CLUBS', 'HEARTS', 'SPADES', 'DIAMONDS'];
+  
+    // Sort suits
+    suits.forEach((ele, i) => {
+        handValue.push(cards.filter((suit) => suit == suits[i]))
+    }) 
+    
+    // Count suits
+    handValue.forEach((ele, i) => {
+        if(handValue[i].length == 5) {
+            return true
+        }
+    })
+  }
