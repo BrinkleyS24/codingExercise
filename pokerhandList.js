@@ -43,6 +43,39 @@ function flush(cards) {
     })
 }
 
+function lowToHigh(a, b) {
+    return a - b;
+}
+
+function isStraight(cards) {
+    // Sorts hand from low to high
+    cards.sort(lowToHigh);
+
+    // checks if straight has an ace
+    if (cards[4] == 14) {
+        if (cards[0] == 2 && cards[1] == 3 && cards[2] == 4 && cards[3] == 5) {
+            return true;
+        }
+        else if (cards[0] == 10 && cards[1] == 11 && cards[2] == 12 && cards[3] == 13) {
+            return true;
+        }
+    }
+
+    else {
+        const cardCheck = cards[0] + 1;
+
+        for (i = 1; i < 5; i++) {
+            if (cards[i] != cardCheck)
+                return false;
+
+            cardCheck++;
+        }
+
+        return true;
+    }
+}
+
+
 function isThreeOfAKind(cards) {
     const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let handValue = [];
