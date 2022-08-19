@@ -1,14 +1,14 @@
 
-const hand = [
-    'HIGHEST POSSIBLE HAND: STRAIGHT FLUSH',
-    'HIGHEST POSSIBLE HAND: FOUR OF A KIND',
-    'HIGHEST POSSIBLE HAND: FULL HOUSE',
-    'HIGHEST POSSIBLE HAND: FLUSH',
-    'HIGHEST POSSIBLE HAND: STRAIGHT',
-    'HIGHEST POSSIBLE HAND: THREE OF A KIND',
-    'HIGHEST POSSIBLE HAND: TWO PAIR',
-    'HIGHEST POSSIBLE HAND: ONE PAIR',
-    'HIGHEST POSSIBLE HAND: HIGH CARD'
+const playerHand = [
+    'Top-Scoring Hand: STRAIGHT FLUSH',
+    'Top-Scoring Hand: FOUR OF A KIND',
+    'Top-Scoring Hand: FULL HOUSE',
+    'Top-Scoring Hand: FLUSH',
+    'Top-Scoring Hand: STRAIGHT',
+    'Top-Scoring Hand: THREE OF A KIND',
+    'Top-Scoring Hand: TWO PAIR',
+    'Top-Scoring Hand: ONE PAIR',
+    'Top-Scoring Hand: HIGH CARD'
 ];
 
 function fourOfAKind(cards) {
@@ -47,7 +47,7 @@ function lowToHigh(a, b) {
     return a - b;
 }
 
-function isStraight(cards) {
+function straight(cards) {
     // Sorts hand from low to high
     cards.sort(lowToHigh);
 
@@ -62,12 +62,11 @@ function isStraight(cards) {
     }
 
     else {
-        const cardCheck = cards[0] + 1;
+        let cardCheck = cards[0] + 1;
 
         for (i = 1; i < 5; i++) {
             if (cards[i] != cardCheck)
                 return false;
-
             cardCheck++;
         }
 
@@ -75,8 +74,7 @@ function isStraight(cards) {
     }
 }
 
-
-function isThreeOfAKind(cards) {
+function threeOfAKind(cards) {
     const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let handValue = [];
 
@@ -91,7 +89,7 @@ function isThreeOfAKind(cards) {
     })
 }
 
-function isTwoPair(cards) {
+function twoPair(cards) {
     const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let handValue = [];
     let pairCount = 0;
@@ -110,7 +108,7 @@ function isTwoPair(cards) {
         return true;
 }
 
-function isOnePair(cards) {
+function onePair(cards) {
     const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let handValue = [];
     let pairCount = 0;
@@ -128,3 +126,5 @@ function isOnePair(cards) {
     if (pairCount == 1)
         return true;
 }
+
+module.exports = { straight, flush, fourOfAKind, threeOfAKind, twoPair, onePair, playerHand };
