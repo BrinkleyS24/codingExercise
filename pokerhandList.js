@@ -16,37 +16,38 @@ function fourOfAKind(cards) {
     let handValue = [];
 
     // sort card values
-    cardValues.forEach((ele, i) => {
-        handValue.push(cards.filter(value => value == cardValues[i]))
-    })
+    for (let i = 0; i < cardValues.length; i++) {
+        handValue.push((cards || []).filter(value => value == cardValues[i]))
+    }
 
     // counting values
-    handValue.forEach((ele, i) => {
+    for (let i = 0; i < handValue.length; i++) {
         if (handValue[i].length == 4) {
             return true
         }
-    })
+    }
+
 }
 
 function flush(cards) {
+    const suits = ['CLUBS', 'HEARTS', 'SPADES', 'DIAMONDS'];
     let handValue = [];
-    var suits = ['CLUBS', 'HEARTS', 'SPADES', 'DIAMONDS'];
 
-    suits.forEach((ele, i) => {
+    for (let i = 0; i < suits.length; i++) {
         handValue.push(cards.filter((suit) => suit == suits[i]))
-    })
+    }
 
-    handValue.forEach((ele, i) => {
+    for (let i = 0; i < handValue.length; i++) {
         if (handValue[i].length == 5) {
             return true
         }
-    })
+    }
+
 }
 
 function lowToHigh(a, b) {
     return a - b;
 }
-
 function straight(cards) {
     // Sorts hand from low to high
     cards.sort(lowToHigh);
@@ -78,15 +79,16 @@ function threeOfAKind(cards) {
     const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let handValue = [];
 
-    cardValues.forEach((ele, i) => {
+    for (let i = 0; i < cardValues.length; i++) {
         handValue.push(cards.filter(value => value == cardValues[i]))
-    })
+    }
 
-    handValue.forEach((ele, i) => {
+    for (let i = 0; i < handValue.length; i++) {
         if (handValue[i].length == 3) {
             return true
         }
-    })
+    }
+
 }
 
 function twoPair(cards) {
@@ -106,6 +108,14 @@ function twoPair(cards) {
 
     if (pairCount == 2)
         return true;
+
+    let cardCheck = cards[0] + 1;
+
+    for (i = 1; i < 5; i++) {
+        if (cards[i] != cardCheck)
+            return false;
+        cardCheck++;
+    }
 }
 
 function onePair(cards) {
@@ -114,7 +124,7 @@ function onePair(cards) {
     let pairCount = 0;
 
     cardValues.forEach((ele, i) => {
-        handValue.push(cards.filter(value => value == cardValues[i]))
+        handValue.push((cards || []).filter(value => value == cardValues[i]))
     })
 
     handValue.forEach((ele, i) => {
@@ -125,6 +135,16 @@ function onePair(cards) {
 
     if (pairCount == 1)
         return true;
+
+    let cardCheck = cards[0] + 1;
+
+    for (i = 1; i < 5; i++) {
+        if (cards[i] != cardCheck)
+            return false;
+        cardCheck++;
+    }
+
+    return true;
 }
 
 module.exports = { straight, flush, fourOfAKind, threeOfAKind, twoPair, onePair, playerHand };
